@@ -18,4 +18,11 @@ export default async function handler(request, response) {
 
     response.status(200).json(place);
   }
+  if (request.method === "PUT") {
+    await Place.findByIdAndUpdate(id, {
+      $set: request.body,
+    });
+
+    response.status(200).json({ status: `Place ${id} updated!` });
+  }
 }
